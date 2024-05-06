@@ -78,7 +78,7 @@ To get a local copy up and running follow these simple steps.
    ```
 3. Enter your Firebase Configration in `.env`
    ```js
-    VITE_APIKEY = 'API KEY';
+   VITE_APIKEY = 'API KEY';
    VITE_AUTHDOMAIN = 'AUTH DOMAIN';
    VITE_PROJECTID = 'PROJECT ID';
    VITE_STORAGEBUCKET = "STORAGE BUCKET";
