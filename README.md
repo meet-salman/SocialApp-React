@@ -2,9 +2,10 @@
 
 # Social Media App
 
+Welcome to the Klikz Social Media App! This is a platform where users can connect, share updates, and interact with each other.
+
 <img align="center" src="/public/snaps/newsfeed.png" />
 
-Welcome to the Klikz Social Media App! This is a platform where users can connect, share updates, and interact with each other.
 
 
 <!-- ABOUT THE PROJECT -->
