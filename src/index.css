@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #f40688;
+  --secondary-color: #0a69dd;
+
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #6b7280;
+
+  --text-white: #d1d5db;
+  --text-accent: #b0b3b8;
+
+  --bg-dark: #18191a;
+  --bg-gray: #242526;
+  --bg-accent: #3a3b3c;
+
+  --error: #ff5454;
+  --success: #4ade80;
+
+  --primary-accent: #ffeff8;
+  --secondary-accent: #ebf1ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+
+/* 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  @apply cursor-default;
+} */
+
+.main-content {
+  width: calc(100% - 100px);
+  @apply min-h-screen max-h-fit left-[100px] p-7 relative bg-[--bg-dark];
+}
+
+.side-content {
+  @apply mt-10 fixed right-10 top-20 hidden xl:block;
+}
+
+.box {
+  @apply w-full max-w-xl mb-4 p-5 rounded-lg bg-[--bg-gray];
+}
+
+.main-heading {
+  @apply text-4xl text-[--text-white] font-semibold select-none cursor-default;
+}
+
+.heading {
+  @apply text-2xl text-[--text-white] font-medium select-none cursor-default;
+}
+
+.icon {
+  @apply text-[--text-accent];
+}
+
+.btn {
+  @apply py-2 px-6 text-[--white] border-none rounded bg-[--primary-color];
+}
+
+.btn-b {
+  @apply py-2 px-6 text-[--white] border-none rounded bg-[--secondary-color];
+}
+
+.input-field {
+  @apply w-96 ps-4 py-3 cursor-text overflow-hidden text-sm text-[--text-white] placeholder:text-[--text-accent] rounded-lg outline-none bg-[--bg-accent];
+}
+
+.select-img-btn {
+  @apply text-[--text-accent] w-fit;
+}
+
+.error {
+  @apply mt-2 text-sm text-[--error]
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 640px) {
+  .main-content {
+    width: calc(100% - 130px);
+    @apply left-[130px] p-10 md:px-20 relative;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main-content {
+    width: calc(100% - 300px);
+    @apply left-[300px] py-10 px-20 relative;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .side-content {
+    @apply right-20;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  .side-content {
+    @apply right-40;
+  }
+}

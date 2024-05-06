@@ -1,0 +1,21 @@
+.sidebar {
+    /* @apply h-[100vh] w-[100px] sm:w-[130px] lg:w-[300px] fixed p-5 lg:p-10 border-r-2 border-b-gray-700; */
+    @apply h-[100vh] w-[100px] sm:w-[130px] lg:w-[300px] fixed p-5 lg:p-10 border-r border-[--bg-accent] bg-[--bg-dark];
+}
+
+.logo_box {
+    @apply mb-12;
+}
+
+.link {
+    @apply flex items-center w-fit lg:w-full gap-3 py-3 px-5 list-none rounded-lg bg-[--bg-gray];
+}
+
+.sidebar li span {
+    @apply hidden lg:flex cursor-pointer;
+}
+
+.image_box h6,
+.image_box p {
+    @apply hidden lg:block;
+}

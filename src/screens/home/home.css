@@ -1,0 +1,23 @@
+.search-icon {
+    @apply absolute inset-y-0 end-0 pe-3.5 flex items-center text-[--text-accent];
+}
+
+.post-input-section {
+    @apply w-full max-w-xl my-10 p-5 rounded-lg bg-[--bg-gray];
+}
+
+.post-input {
+    @apply block w-full ps-4 py-3 cursor-text overflow-hidden text-sm text-[--text-white] placeholder:text-[--text-accent] rounded-lg outline-none bg-[--bg-accent];
+}
+
+.cancel-img-btn {
+    @apply w-6 h-6 absolute text-center flex items-center top-0 right-0 m-2 text-sm text-white bg-[--primary-color] hover:text-[--primary-color] hover:bg-gray-100 rounded-full p-1;
+}
+
+.selected-img-preview {
+    @apply relative w-32 h-32 object-cover rounded mt-6;
+}
+
+.selected-img {
+    @apply w-32 h-32 object-cover rounded;
+}

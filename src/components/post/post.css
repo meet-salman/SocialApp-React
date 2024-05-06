@@ -1,0 +1,15 @@
+.post-content {
+    @apply text-sm text-[--text-white] leading-normal;
+}
+
+.seemore-btn {
+    @apply text-sm text-[--text-accent];
+}
+
+.edit-btn {
+    @apply text-sm text-blue-500;
+}
+
+.dlt-btn {
+    @apply text-sm text-red-500;
+}
