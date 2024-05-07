@@ -15,6 +15,7 @@ import SmallLoader from "../../components/loader/SmallLoader"
 
 import "./profile.css"
 import userImg from "../../assets/user.png"
+import Alert from '../../components/alert/Alert';
 
 
 
@@ -43,6 +44,10 @@ const Profile = () => {
   const [editedPostContent, setEditedPostContent] = useState("");
 
   const [showModal, setShowModal] = useState(false);
+
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(true);
+  const [alertMsg, setAlertMsg] = useState("");
 
 
 
@@ -96,6 +101,14 @@ const Profile = () => {
         setIsDeleting(false);
         setShowModal(false);
 
+        setIsAlert(true);
+        setAlertSuccess(true);
+        setAlertMsg("Post Deleted Successfully!");
+
+        setTimeout(() => {
+          setIsAlert(false);
+        }, 1500);
+
       })
   };
 
@@ -136,6 +149,14 @@ const Profile = () => {
           setIsEdit(false);
           setIsEditing(false);
 
+          setIsAlert(true);
+          setAlertSuccess(true);
+          setAlertMsg("Post Edited Successfully!");
+
+          setTimeout(() => {
+            setIsAlert(false);
+          }, 1500);
+
         })
         .catch((err) => {
           console.log(err);
@@ -149,6 +170,14 @@ const Profile = () => {
       setEditedPostContent("");
       setIsEdit(false);
       setIsEditing(false);
+
+      setIsAlert(true);
+      setAlertSuccess(true);
+      setAlertMsg("Post Edited Successfully!");
+
+      setTimeout(() => {
+        setIsAlert(false);
+      }, 1500);
     }
 
   };
@@ -345,6 +374,9 @@ const Profile = () => {
 
 
       </div >
+
+      <Alert isAlert={isAlert} alertSuccess={alertSuccess} alertMsg={alertMsg} />
+
 
     </>
   )

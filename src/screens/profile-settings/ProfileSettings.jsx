@@ -13,6 +13,7 @@ import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import SmallLoader from "../../components/loader/SmallLoader"
 
 import userImg from "../../assets/user.png"
+import Alert from "../../components/alert/Alert";
 
 const ProfileSettings = () => {
 
@@ -24,6 +25,11 @@ const ProfileSettings = () => {
     const [editedProfileImage, setEditedProfileImage] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [error, setError] = useState("");
+
+    const [isAlert, setIsAlert] = useState(false);
+    const [alertSuccess, setAlertSuccess] = useState(true);
+    const [alertMsg, setAlertMsg] = useState("");
+
 
     // Checking User LoggedIn OR LoggedOut
     useEffect(() => {
@@ -106,6 +112,14 @@ const ProfileSettings = () => {
                     setUser(copyUser);
                     setEditedProfileImage(null);
                     setIsEditing(false);
+
+                    setIsAlert(true);
+                    setAlertSuccess(true);
+                    setAlertMsg("Profile Edit Successfully!");
+
+                    setTimeout(() => {
+                        setIsAlert(false);
+                    }, 1500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -124,6 +138,14 @@ const ProfileSettings = () => {
 
                     setUser(copyUser);
                     setIsEditing(false);
+
+                    setIsAlert(true);
+                    setAlertSuccess(true);
+                    setAlertMsg("Profile Edit Successfully!");
+
+                    setTimeout(() => {
+                        setIsAlert(false);
+                    }, 1500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -217,6 +239,9 @@ const ProfileSettings = () => {
 
 
             </div >
+
+            <Alert isAlert={isAlert} alertSuccess={alertSuccess} alertMsg={alertMsg} />
+
         </>
     )
 }

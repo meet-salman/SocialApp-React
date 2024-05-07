@@ -15,6 +15,7 @@ import userImg from "../../assets/user.png"
 
 import Post from "../../components/post/Post";
 import SmallLoader from "../../components/loader/SmallLoader"
+import Alert from "../../components/alert/Alert";
 
 
 // Posts List Render
@@ -53,6 +54,10 @@ const Home = () => {
 
   const [isPosting, setIsPosting] = useState(false);
   const [status, setStatus] = useState(<SmallLoader />);
+
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(true);
+  const [alertMsg, setAlertMsg] = useState("");
 
 
   // Checking User LoggedIn OR LoggedOut
@@ -146,6 +151,14 @@ const Home = () => {
               setPostImage(null);
               setPostContent("");
               setIsPosting(false);
+
+              setIsAlert(true);
+              setAlertSuccess(true);
+              setAlertMsg("Post Publish Successfully!");
+
+              setTimeout(() => {
+                setIsAlert(false);
+              }, 1500);
             })
             .catch((err) => {
               console.log(err);
@@ -168,6 +181,14 @@ const Home = () => {
           setPostImage(null);
           setPostContent("");
           setIsPosting(false);
+
+          setIsAlert(true);
+          setAlertSuccess(true);
+          setAlertMsg("Post Publish Successfully!");
+
+          setTimeout(() => {
+            setIsAlert(false);
+          }, 1500);
         })
         .catch((err) => {
           console.log(err);
@@ -220,90 +241,94 @@ const Home = () => {
 
 
   return (
-    <div className="main-content" >
+    <>
+      <div className="main-content" >
 
-      <div className="lg:flex lg:justify-between">
-        <h1 className="main-heading mb-8 lg:mb-0"> News Feed </h1>
-
-
-        {/* Search Posts */}
-        <div>
-          <div className="relative">
-
-            {/* Search Input */}
-            <div>
-              <input onChange={handleSearchChange} className="input-field" type="text" placeholder="search here" />
-            </div>
-
-            {/* Search Icon */}
-            <div className="search-icon">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </div>
-          </div>
-        </div>
-
-      </div>
+        <div className="lg:flex lg:justify-between">
+          <h1 className="main-heading mb-8 lg:mb-0"> News Feed </h1>
 
 
-      {/* Post Upload Section */}
-      < div className="post-input-section">
+          {/* Search Posts */}
+          <div>
+            <div className="relative">
 
-        {/* Post Input */}
-        <form onSubmit={createPost}>
-          <textarea onChange={(e) => { setPostContent(e.target.value) }} value={postContent} className="post-input mb-4" name="" rows={1} placeholder="What's in your mind?"></textarea>
-
-          {/* Image selection */}
-          <div className="select-img-btn">
-            <label>
-              <span className="flex gap-3">
-                <FontAwesomeIcon icon={faPaperclip} />
-                <p className="text-sm"> Upload image </p>
-              </span>
-              <input hidden type="file" onChange={handleImageChange} />
-            </label>
-          </div>
-
-          {/* Preview image */}
-          <div className="flex">
-            {postIimage && (
-              <div className="selected-img-preview">
-                <img src={postIimage.url} alt={postIimage.name} className="selected-img" />
-                <button onClick={handleRemoveImage} className="cancel-img-btn"><span className="mx-auto"> <FontAwesomeIcon icon={faXmark} /> </span> </button>
+              {/* Search Input */}
+              <div>
+                <input onChange={handleSearchChange} className="input-field" type="text" placeholder="search here" />
               </div>
-            )}
+
+              {/* Search Icon */}
+              <div className="search-icon">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </div>
+            </div>
           </div>
 
-          {/* Submit Button */}
-          <div className={`mt-6 text-end ${!postContent && "hidden"}`}>
-            <button type="submit" className="btn"> {isPosting ? <SmallLoader /> : "Post"} </button>
-          </div>
-
-
-        </form>
-
-      </div>
-
-
-
-      {/* All Posts Section */}
-      {allPosts.length > 0
-        ?
-
-        searchText
-          ?
-          < PostsList postsData={filteredPosts} />
-          :
-          <PostsList postsData={allPosts} />
-
-        :
-        <div className="mt-20">
-          <span className="text-2xl text-[--gray]"> {status} </span>
         </div>
-      }
+
+
+        {/* Post Upload Section */}
+        < div className="post-input-section">
+
+          {/* Post Input */}
+          <form onSubmit={createPost}>
+            <textarea onChange={(e) => { setPostContent(e.target.value) }} value={postContent} className="post-input mb-4" name="" rows={1} placeholder="What's in your mind?"></textarea>
+
+            {/* Image selection */}
+            <div className="select-img-btn">
+              <label>
+                <span className="flex gap-3">
+                  <FontAwesomeIcon icon={faPaperclip} />
+                  <p className="text-sm"> Upload image </p>
+                </span>
+                <input hidden type="file" onChange={handleImageChange} />
+              </label>
+            </div>
+
+            {/* Preview image */}
+            <div className="flex">
+              {postIimage && (
+                <div className="selected-img-preview">
+                  <img src={postIimage.url} alt={postIimage.name} className="selected-img" />
+                  <button onClick={handleRemoveImage} className="cancel-img-btn"><span className="mx-auto"> <FontAwesomeIcon icon={faXmark} /> </span> </button>
+                </div>
+              )}
+            </div>
+
+            {/* Submit Button */}
+            <div className={`mt-6 text-end ${!postContent && "hidden"}`}>
+              <button type="submit" className="btn"> {isPosting ? <SmallLoader /> : "Post"} </button>
+            </div>
+
+
+          </form>
+
+        </div>
 
 
 
-    </div >
+        {/* All Posts Section */}
+        {allPosts.length > 0
+          ?
+
+          searchText
+            ?
+            < PostsList postsData={filteredPosts} />
+            :
+            <PostsList postsData={allPosts} />
+
+          :
+          <div className="mt-20">
+            <span className="text-2xl text-[--gray]"> {status} </span>
+          </div>
+        }
+
+
+      </div >
+
+      <Alert isAlert={isAlert} alertSuccess={alertSuccess} alertMsg={alertMsg} />
+    </>
+
   )
 }
 
